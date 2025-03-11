@@ -1,0 +1,45 @@
+{
+    "name": "adnanmula/lexicographic-ranking",
+    "description": "Lexicographic order calculator, useful for persisting ordered lists.",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Adnan Mula",
+            "email": "adnan.mula.bakkar@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "adnanmula/coding-standard": "^0.0.4",
+        "phpstan/phpstan": "^0.12.55",
+        "phpunit/phpunit": "^8.5",
+        "symfony/var-dumper": "^5.1",
+        "phpro/grumphp": "^1.1"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@auto-scripts",
+            "rm -rf .git/hooks",
+            "cp -r scripts/git-hooks .git/hooks"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "AdnanMula\\LexRanking\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AdnanMula\\LexRanking\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpro/grumphp": true
+        }
+    }
+}

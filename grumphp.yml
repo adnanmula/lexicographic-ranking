@@ -1,0 +1,18 @@
+grumphp:
+    ascii:
+        failed:
+            - scripts/git-hooks/ko.txt
+        succeeded:
+            - scripts/git-hooks/ok.txt
+    tasks:
+        composer:
+            strict: true
+        phpcs:
+            standard:
+                - 'phpcs.xml.dist'
+        phpstan:
+            autoload_file: phpstan.neon
+            memory_limit: "256"
+        phpunit: ~
+        phpversion:
+            project: '7.4'
