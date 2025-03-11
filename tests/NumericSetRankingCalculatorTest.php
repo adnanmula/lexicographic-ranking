@@ -16,11 +16,8 @@ use PHPUnit\Framework\TestCase;
 
 final class NumericSetRankingCalculatorTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider valid_numeric_gap8_start_provider
-     */
-    public function valid_numeric_gap8_start_test(?string $prev, ?string $next, string $result): void
+    /** @dataProvider validNumericGap8StartProvider */
+    public function testValidNumericGap8Start(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
             new NumericTokenSet(),
@@ -30,16 +27,13 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public function valid_numeric_gap8_start_provider(): DataProvider
+    public static function validNumericGap8StartProvider(): DataProvider
     {
         return NumericGap8StartProvider::valid();
     }
 
-    /**
-     * @test
-     * @dataProvider invalid_numeric_gap8_start_provider
-     */
-    public function invalid_numeric_gap8_start_test(?string $prev, ?string $next): void
+    /** @dataProvider invalidNumericGap8StartProvider */
+    public function testInvalidNumericGap8Start(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
 
@@ -51,16 +45,13 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public function invalid_numeric_gap8_start_provider(): DataProvider
+    public static function invalidNumericGap8StartProvider(): DataProvider
     {
         return NumericGap8StartProvider::invalid();
     }
 
-    /**
-     * @test
-     * @dataProvider valid_numeric_gap8_end_provider
-     */
-    public function valid_numeric_gap8_end_test(?string $prev, ?string $next, string $result): void
+    /** @dataProvider validNumericGap8EndProvider */
+    public function testValidNumericGap8End(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
             new NumericTokenSet(),
@@ -70,16 +61,13 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public function valid_numeric_gap8_end_provider(): DataProvider
+    public static function validNumericGap8EndProvider(): DataProvider
     {
         return NumericGap8EndProvider::valid();
     }
 
-    /**
-     * @test
-     * @dataProvider invalid_numeric_gap8_end_provider
-     */
-    public function invalid_numeric_gap8_end_test(?string $prev, ?string $next): void
+    /** @dataProvider invalidNumericGap8EndProvider */
+    public function testInvalidNumericGap8End(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
 
@@ -91,16 +79,13 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public function invalid_numeric_gap8_end_provider(): DataProvider
+    public static function invalidNumericGap8EndProvider(): DataProvider
     {
         return NumericGap8EndProvider::invalid();
     }
 
-    /**
-     * @test
-     * @dataProvider valid_numeric_gap_mid_provider
-     */
-    public function valid_numeric_gap_mid_test(?string $prev, ?string $next, string $result): void
+    /** @dataProvider validNumericGapMidProvider */
+    public function testValidNumericGapMid(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
             new NumericTokenSet(),
@@ -110,16 +95,13 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public function valid_numeric_gap_mid_provider(): DataProvider
+    public static function validNumericGapMidProvider(): DataProvider
     {
         return NumericGapMidProvider::valid();
     }
 
-    /**
-     * @test
-     * @dataProvider invalid_numeric_gap_mid_provider
-     */
-    public function invalid_numeric_gap_mid_test(?string $prev, ?string $next): void
+    /** @dataProvider invalidNumericGapMidProvider */
+    public function testInvalidNumericGapMid(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
 
@@ -131,7 +113,7 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public function invalid_numeric_gap_mid_provider(): DataProvider
+    public static function invalidNumericGapMidProvider(): DataProvider
     {
         return NumericGapMidProvider::invalid();
     }

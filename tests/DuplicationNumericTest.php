@@ -10,23 +10,21 @@ use PHPUnit\Framework\TestCase;
 
 final class DuplicationNumericTest extends TestCase
 {
-    /** @test */
-    public function no_duplication_numeric_start(): void
+    public function testNoDuplicationNumericStart(): void
     {
         for ($i = 1; $i <= 10; $i++) {
-            $this->numeric_start_test($i);
+            $this->numericStart($i);
         }
     }
 
-    /** @test */
-    public function no_duplication_numeric_end(): void
+    public function testNoDuplicationNumericEnd(): void
     {
         for ($i = 1; $i <= 10; $i++) {
-            $this->numeric_end_test($i);
+            $this->numericEnd($i);
         }
     }
 
-    private function numeric_start_test(int $gap): void
+    private function numericStart(int $gap): void
     {
         $tokenSet = new NumericTokenSet();
 
@@ -46,7 +44,7 @@ final class DuplicationNumericTest extends TestCase
         }
     }
 
-    private function numeric_end_test(int $gap): void
+    private function numericEnd(int $gap): void
     {
         $tokenSet = new NumericTokenSet();
 

@@ -2,6 +2,7 @@
 
 namespace AdnanMula\LexRanking\Tests\DataProvider;
 
+/** @implements \Iterator<int, array> */
 abstract class DataProvider implements \Iterator
 {
     private array $items;

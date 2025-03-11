@@ -13,11 +13,10 @@ use PHPUnit\Framework\TestCase;
 final class RankingCalculatorTest extends TestCase
 {
     /**
-     * @test
-     * @dataProvider valid_fixed_gap_provider
+     * @dataProvider validFixedGapProvider
      * @doesNotPerformAssertions
      */
-    public function valid_fixed_gap_start_test(int $gap): void
+    public function testStartValidFixedGap(int $gap): void
     {
         new RankingCalculator(
             new Alpha62TokenSet(),
@@ -26,11 +25,10 @@ final class RankingCalculatorTest extends TestCase
     }
 
     /**
-     * @test
-     * @dataProvider valid_fixed_gap_provider
+     * @dataProvider validFixedGapProvider
      * @doesNotPerformAssertions
      */
-    public function valid_fixed_gap_end_test(int $gap): void
+    public function testEndValidFixedGap(int $gap): void
     {
         new RankingCalculator(
             new Alpha62TokenSet(),
@@ -38,16 +36,13 @@ final class RankingCalculatorTest extends TestCase
         );
     }
 
-    public function valid_fixed_gap_provider(): array
+    public static function validFixedGapProvider(): array
     {
         return [[1], [20], [36], [62]];
     }
 
-    /**
-     * @test
-     * @dataProvider invalid_fixed_gap_provider
-     */
-    public function invalid_fixed_gap_test(int $gap): void
+    /** @dataProvider invalidFixedGapProvider */
+    public function testStartInvalidFixedGap(int $gap): void
     {
         $this->expectException(InvalidPositionException::class);
 
@@ -59,7 +54,7 @@ final class RankingCalculatorTest extends TestCase
         $calculator->between(null, null);
     }
 
-    public function invalid_fixed_gap_provider(): array
+    public static function invalidFixedGapProvider(): array
     {
         return [[0], [-1], [-99], [37], [62]];
     }

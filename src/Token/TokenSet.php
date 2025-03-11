@@ -7,11 +7,14 @@ use AdnanMula\LexRanking\Exception\InvalidTokenSetException;
 
 abstract class TokenSet
 {
+    /** @var array<string> */
     protected array $set;
 
-    protected function __construct(array $set)
+    protected function __construct(string ...$set)
     {
-        $this->assert($set);
+        if (0 === \count($set)) {
+            throw new InvalidTokenSetException();
+        }
 
         $this->set = $set;
     }
@@ -28,7 +31,10 @@ abstract class TokenSet
 
     public function maxToken(): string
     {
-        return \end($this->set);
+        /** @var string $lastToken */
+        $lastToken = \end($this->set);
+
+        return $lastToken;
     }
 
     public function maxIndex(): int
@@ -59,18 +65,5 @@ abstract class TokenSet
     public function isValid(string $input): bool
     {
         return 0 === \count(\array_diff(\str_split($input), $this->set));
-    }
-
-    private function assert(array $set): void
-    {
-        if (0 === \count($set)) {
-            throw new InvalidTokenSetException();
-        }
-
-        foreach ($set as $token) {
-            if (false === \is_string($token)) {
-                throw new InvalidTokenSetException();
-            }
-        }
     }
 }

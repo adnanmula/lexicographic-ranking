@@ -16,11 +16,8 @@ use PHPUnit\Framework\TestCase;
 
 final class Alpha62SetRankingCalculatorTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider valid_alpha62_gap8_start_provider
-     */
-    public function valid_alpha62_gap8_start_test(?string $prev, ?string $next, string $result): void
+    /** @dataProvider validAlpha62Gap8StartProvider */
+    public function testValidAlpha62Gap8Start(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
             new Alpha62TokenSet(),
@@ -30,16 +27,13 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public function valid_alpha62_gap8_start_provider(): DataProvider
+    public static function validAlpha62Gap8StartProvider(): DataProvider
     {
         return Alpha62Gap8StartProvider::valid();
     }
 
-    /**
-     * @test
-     * @dataProvider invalid_alpha62_gap8_start_provider
-     */
-    public function invalid_alpha62_gap8_start_test(?string $prev, ?string $next): void
+    /** @dataProvider invalidAlpha62Gap8StartProvider */
+    public function testInvalidAlpha62Gap8Start(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
 
@@ -51,16 +45,13 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public function invalid_alpha62_gap8_start_provider(): DataProvider
+    public static function invalidAlpha62Gap8StartProvider(): DataProvider
     {
         return Alpha62Gap8StartProvider::invalid();
     }
 
-    /**
-     * @test
-     * @dataProvider valid_alpha62_gap8_end_provider
-     */
-    public function valid_alpha62_gap8_end_test(?string $prev, ?string $next, string $result): void
+    /** @dataProvider validAlpha62Gap8EndProvider */
+    public function testValidAlpha62Gap8End(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
             new Alpha62TokenSet(),
@@ -70,16 +61,13 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public function valid_alpha62_gap8_end_provider(): DataProvider
+    public static function validAlpha62Gap8EndProvider(): DataProvider
     {
         return Alpha62Gap8EndProvider::valid();
     }
 
-    /**
-     * @test
-     * @dataProvider invalid_alpha62_gap8_end_provider
-     */
-    public function invalid_alpha62_gap8_end_test(?string $prev, ?string $next): void
+    /** @dataProvider invalidAlpha62Gap8EndProvider */
+    public function testInvalidAlpha62Gap8End(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
 
@@ -91,16 +79,13 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public function invalid_alpha62_gap8_end_provider(): DataProvider
+    public static function invalidAlpha62Gap8EndProvider(): DataProvider
     {
         return Alpha62Gap8EndProvider::invalid();
     }
 
-    /**
-     * @test
-     * @dataProvider valid_alpha62_gap_mid_provider
-     */
-    public function valid_alpha62_gap_mid_test(?string $prev, ?string $next, string $result): void
+    /** @dataProvider validAlpha62GapMidProvider */
+    public function testValidAlpha62GapMid(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
             new Alpha62TokenSet(),
@@ -110,16 +95,13 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public function valid_alpha62_gap_mid_provider(): DataProvider
+    public static function validAlpha62GapMidProvider(): DataProvider
     {
         return Alpha62GapMidProvider::valid();
     }
 
-    /**
-     * @test
-     * @dataProvider invalid_alpha62_gap_mid_provider
-     */
-    public function invalid_alpha62_gap_mid_test(?string $prev, ?string $next): void
+    /** @dataProvider invalidAlpha62GapMidProvider */
+    public function testInvalidAlpha62GapMid(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
 
@@ -131,7 +113,7 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public function invalid_alpha62_gap_mid_provider(): DataProvider
+    public static function invalidAlpha62GapMidProvider(): DataProvider
     {
         return Alpha62GapMidProvider::invalid();
     }

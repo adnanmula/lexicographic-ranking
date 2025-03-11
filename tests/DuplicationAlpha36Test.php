@@ -10,23 +10,21 @@ use PHPUnit\Framework\TestCase;
 
 final class DuplicationAlpha36Test extends TestCase
 {
-    /** @test */
-    public function no_duplication_alpha36_start(): void
+    public function testNoDuplicationAlpha36Start(): void
     {
         for ($i = 1; $i <= 36; $i++) {
-            $this->alpha36_start_test($i);
+            self::alpha36StartTest($i);
         }
     }
 
-    /** @test */
-    public function no_duplication_alpha36_end(): void
+    public function testNoDuplicationAlpha36End(): void
     {
         for ($i = 1; $i <= 36; $i++) {
-            $this->alpha36_end_test($i);
+            self::alpha36EndTest($i);
         }
     }
 
-    private function alpha36_start_test(int $gap): void
+    private function alpha36StartTest(int $gap): void
     {
         $tokenSet = new Alpha36TokenSet();
 
@@ -40,13 +38,13 @@ final class DuplicationAlpha36Test extends TestCase
         for ($i = 1; $i <= 100; $i++) {
             $next = $calculator->between($initial, null);
 
-            $this->assertFalse(\strcmp($initial, $next) >= 0);
+            self::assertFalse(\strcmp($initial, $next) >= 0);
 
             $initial = $next;
         }
     }
 
-    private function alpha36_end_test(int $gap): void
+    private function alpha36EndTest(int $gap): void
     {
         $tokenSet = new Alpha36TokenSet();
 
@@ -60,7 +58,7 @@ final class DuplicationAlpha36Test extends TestCase
         for ($i = 1; $i <= 100; $i++) {
             $next = $calculator->between($initial, null);
 
-            $this->assertFalse(\strcmp($initial, $next) >= 0);
+            self::assertFalse(\strcmp($initial, $next) >= 0);
 
             $initial = $next;
         }

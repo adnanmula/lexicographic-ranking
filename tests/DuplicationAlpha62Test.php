@@ -10,23 +10,21 @@ use PHPUnit\Framework\TestCase;
 
 final class DuplicationAlpha62Test extends TestCase
 {
-    /** @test */
-    public function no_duplication_alpha62_start(): void
+    public function testNoDuplicationAlpha62Start(): void
     {
         for ($i = 1; $i <= 10; $i++) {
-            $this->alpha62_start_test($i);
+            $this->alpha62Start($i);
         }
     }
 
-    /** @test */
-    public function no_duplication_alpha62_end(): void
+    public function testNoDuplicationAlpha62End(): void
     {
         for ($i = 1; $i <= 10; $i++) {
-            $this->alpha62_end_test($i);
+            $this->alpha62End($i);
         }
     }
 
-    private function alpha62_start_test(int $gap): void
+    private function alpha62Start(int $gap): void
     {
         $tokenSet = new Alpha62TokenSet();
 
@@ -46,7 +44,7 @@ final class DuplicationAlpha62Test extends TestCase
         }
     }
 
-    private function alpha62_end_test(int $gap): void
+    private function alpha62End(int $gap): void
     {
         $tokenSet = new Alpha62TokenSet();
 
