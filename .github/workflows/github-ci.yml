@@ -19,13 +19,13 @@ jobs:
           make up
 
       - name: Install dependencies
-        run: docker-compose -f ./docker-compose.yml exec -T --user=$(id -u) php sh -c "composer install --ignore-platform-reqs --prefer-dist --no-progress --no-suggest"
+        run: docker compose -f ./docker-compose.yml exec -T --user=$(id -u) php sh -c "composer install --ignore-platform-reqs --prefer-dist --no-progress --no-suggest"
 
       - name: Code sniffer
-        run: docker-compose -f ./docker-compose.yml exec -T --user=$(id -u) php sh -c "phpcs --standard=phpcs.xml.dist"
+        run: docker compose -f ./docker-compose.yml exec -T --user=$(id -u) php sh -c "phpcs --standard=phpcs.xml.dist"
 
       - name: Unit tests
-        run: docker-compose -f ./docker-compose.yml exec -T --user=$(id -u) php sh -c "php ./vendor/bin/phpunit"
+        run: docker compose -f ./docker-compose.yml exec -T --user=$(id -u) php sh -c "php ./vendor/bin/phpunit"
 
       - name: Php stan
-        run: docker-compose -f ./docker-compose.yml exec -T --user=$(id -u) php sh -c "php -d memory_limit=256M vendor/bin/phpstan analyse -c phpstan.neon"
+        run: docker compose -f ./docker-compose.yml exec -T --user=$(id -u) php sh -c "php -d memory_limit=256M vendor/bin/phpstan analyse -c phpstan.neon"
