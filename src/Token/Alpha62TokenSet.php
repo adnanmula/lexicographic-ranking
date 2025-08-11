@@ -8,7 +8,7 @@ final class Alpha62TokenSet extends TokenSet
     {
         parent::__construct(
             ...\array_merge(
-                \array_map('strval', \range('0', '9')),
+                \range('0', '9'),
                 \range('A', 'Z'),
                 \range('a', 'z'),
             ),

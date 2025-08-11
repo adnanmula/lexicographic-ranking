@@ -36,3 +36,6 @@ cs: ## run phpcs checker
 
 grump: ## run grumphp
 	docker compose -f ./docker-compose.yml exec --user=$(id -u) ${DOCKER_PHP_SERVICE} sh -c "./vendor/bin/grumphp run"
+
+mutation: ## run mutation tests
+	docker compose -f ./docker-compose.yml exec --user=$(id -u) ${DOCKER_PHP_SERVICE} sh -c "./vendor/bin/infection --threads=4"

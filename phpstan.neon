@@ -9,3 +9,7 @@ parameters:
             identifier: missingType.iterableValue
             paths:
                 - tests/*
+        -
+            identifier: new.resultUnused
+            paths:
+                - tests/*

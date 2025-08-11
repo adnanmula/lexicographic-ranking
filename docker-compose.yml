@@ -1,6 +1,6 @@
 services:
   php:
-    build: .
+    build: docker
     volumes:
       - .:/var/app
       - ~/.composer:/.composer

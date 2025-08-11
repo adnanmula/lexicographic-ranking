@@ -16,3 +16,6 @@ grumphp:
         phpunit: ~
         phpversion:
             project: '8.4'
+        infection:
+          threads: 4
+          configuration: infection.json.dist

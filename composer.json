@@ -14,14 +14,14 @@
     },
     "require-dev": {
         "adnanmula/coding-standard": "^0.0.13",
-        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^12.0",
         "symfony/var-dumper": "^7.0",
-        "phpro/grumphp": "^2.5"
+        "phpro/grumphp": "^2.5",
+        "infection/infection": "^0.31.1"
     },
     "scripts": {
         "post-install-cmd": [
-            "@auto-scripts",
             "rm -rf .git/hooks",
             "cp -r scripts/git-hooks .git/hooks"
         ]
@@ -39,7 +39,8 @@
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpro/grumphp": true
+            "phpro/grumphp": true,
+            "infection/extension-installer": true
         }
     }
 }

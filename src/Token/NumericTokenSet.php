@@ -6,6 +6,6 @@ final class NumericTokenSet extends TokenSet
 {
     public function __construct()
     {
-        parent::__construct(...\array_map('strval', \range('0', '9')));
+        parent::__construct(...\range('0', '9'));
     }
 }
