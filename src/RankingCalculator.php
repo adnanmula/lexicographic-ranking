@@ -6,16 +6,12 @@ use AdnanMula\LexRanking\Exception\InvalidInputException;
 use AdnanMula\LexRanking\Position\Position;
 use AdnanMula\LexRanking\Token\TokenSet;
 
-final class RankingCalculator
+final readonly class RankingCalculator
 {
-    private TokenSet $tokenSet;
-    private Position $position;
-
-    public function __construct(TokenSet $tokenSet, Position $position)
-    {
-        $this->tokenSet = $tokenSet;
-        $this->position = $position;
-    }
+    public function __construct(
+        private TokenSet $tokenSet,
+        private Position $position,
+    ) {}
 
     public function between(?string $prev, ?string $next): string
     {
@@ -37,7 +33,7 @@ final class RankingCalculator
             if (null === $possibleToken) {
                 $offset += $this->position->availableSpace($this->tokenSet, $prevToken, $nextToken);
                 $rank .= $prevToken;
-                $i++;
+                ++$i;
 
                 continue;
             }

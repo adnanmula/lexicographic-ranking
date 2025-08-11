@@ -8,11 +8,14 @@ final class DynamicMidPosition implements Position
 {
     public function next(TokenSet $set, string $prev, string $next, int $offset): ?string
     {
-        if ($prev === $next || $set->getIndex($prev) === $set->getIndex($next) - 1) {
+        $prevIndex = $set->getIndex($prev);
+        $nextIndex = $set->getIndex($next);
+
+        if ($prev === $next || $prevIndex === $nextIndex - 1) {
             return null;
         }
 
-        $midIndex = $set->getIndex($prev) + (int) \floor(($set->getIndex($next) - $set->getIndex($prev)) / 2);
+        $midIndex = $prevIndex + (int) \floor(($nextIndex - $prevIndex) / 2);
 
         return $set->getToken($midIndex);
     }

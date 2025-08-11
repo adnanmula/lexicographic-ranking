@@ -12,14 +12,14 @@ final class DuplicationAlpha36Test extends TestCase
 {
     public function testNoDuplicationAlpha36Start(): void
     {
-        for ($i = 1; $i <= 36; $i++) {
+        for ($i = 1; $i <= 36; ++$i) {
             self::alpha36StartTest($i);
         }
     }
 
     public function testNoDuplicationAlpha36End(): void
     {
-        for ($i = 1; $i <= 36; $i++) {
+        for ($i = 1; $i <= 36; ++$i) {
             self::alpha36EndTest($i);
         }
     }
@@ -35,7 +35,7 @@ final class DuplicationAlpha36Test extends TestCase
 
         $initial = $tokenSet->midToken();
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 100; ++$i) {
             $next = $calculator->between($initial, null);
 
             self::assertFalse(\strcmp($initial, $next) >= 0);
@@ -55,7 +55,7 @@ final class DuplicationAlpha36Test extends TestCase
 
         $initial = $tokenSet->midToken();
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 100; ++$i) {
             $next = $calculator->between($initial, null);
 
             self::assertFalse(\strcmp($initial, $next) >= 0);

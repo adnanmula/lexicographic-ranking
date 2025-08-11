@@ -5,15 +5,11 @@ namespace AdnanMula\LexRanking\Position;
 use AdnanMula\LexRanking\Exception\InvalidPositionException;
 use AdnanMula\LexRanking\Token\TokenSet;
 
-final class FixedEndPosition implements Position
+final readonly class FixedEndPosition implements Position
 {
-    private int $gap;
-
-    public function __construct(int $gap)
+    public function __construct(private int $gap)
     {
         $this->assert($gap);
-
-        $this->gap = $gap;
     }
 
     public function next(TokenSet $set, string $prev, string $next, int $offset): ?string
@@ -24,11 +20,14 @@ final class FixedEndPosition implements Position
             throw new InvalidPositionException();
         }
 
-        if ($set->getIndex($next) - $gap <= $set->getIndex($prev)) {
+        $prevIndex = $set->getIndex($prev);
+        $nextIndex = $set->getIndex($next);
+
+        if ($nextIndex - $gap <= $prevIndex) {
             return null;
         }
 
-        return $set->getToken($set->getIndex($next) - $gap);
+        return $set->getToken($nextIndex - $gap);
     }
 
     public function availableSpace(TokenSet $set, string $prev, string $next): int

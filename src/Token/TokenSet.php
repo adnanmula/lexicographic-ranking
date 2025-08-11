@@ -44,6 +44,10 @@ abstract class TokenSet
 
     public function getToken(int $index): string
     {
+        if (0 > $index) {
+            throw new InvalidInputException();
+        }
+
         if (\count($this->set) - 1 < $index) {
             $index %= \count($this->set);
         }

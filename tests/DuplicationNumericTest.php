@@ -12,14 +12,14 @@ final class DuplicationNumericTest extends TestCase
 {
     public function testNoDuplicationNumericStart(): void
     {
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 10; ++$i) {
             $this->numericStart($i);
         }
     }
 
     public function testNoDuplicationNumericEnd(): void
     {
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 10; ++$i) {
             $this->numericEnd($i);
         }
     }
@@ -35,7 +35,7 @@ final class DuplicationNumericTest extends TestCase
 
         $initial = $tokenSet->midToken();
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 100; ++$i) {
             $next = $calculator->between($initial, null);
 
             $this->assertFalse(\strcmp($initial, $next) >= 0);
@@ -55,7 +55,7 @@ final class DuplicationNumericTest extends TestCase
 
         $initial = $tokenSet->midToken();
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 100; ++$i) {
             $next = $calculator->between($initial, null);
 
             $this->assertFalse(\strcmp($initial, $next) >= 0);

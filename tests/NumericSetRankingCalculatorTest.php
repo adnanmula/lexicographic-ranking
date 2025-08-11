@@ -7,16 +7,17 @@ use AdnanMula\LexRanking\Position\DynamicMidPosition;
 use AdnanMula\LexRanking\Position\FixedEndPosition;
 use AdnanMula\LexRanking\Position\FixedStartPosition;
 use AdnanMula\LexRanking\RankingCalculator;
-use AdnanMula\LexRanking\Tests\DataProvider\DataProvider;
 use AdnanMula\LexRanking\Tests\DataProvider\Numeric\NumericGap8EndProvider;
 use AdnanMula\LexRanking\Tests\DataProvider\Numeric\NumericGap8StartProvider;
 use AdnanMula\LexRanking\Tests\DataProvider\Numeric\NumericGapMidProvider;
+use AdnanMula\LexRanking\Tests\DataProvider\TestDataProvider;
 use AdnanMula\LexRanking\Token\NumericTokenSet;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class NumericSetRankingCalculatorTest extends TestCase
 {
-    /** @dataProvider validNumericGap8StartProvider */
+    #[DataProvider('validNumericGap8StartProvider')]
     public function testValidNumericGap8Start(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
@@ -27,12 +28,12 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public static function validNumericGap8StartProvider(): DataProvider
+    public static function validNumericGap8StartProvider(): TestDataProvider
     {
         return NumericGap8StartProvider::valid();
     }
 
-    /** @dataProvider invalidNumericGap8StartProvider */
+    #[DataProvider('invalidNumericGap8StartProvider')]
     public function testInvalidNumericGap8Start(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
@@ -45,12 +46,12 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public static function invalidNumericGap8StartProvider(): DataProvider
+    public static function invalidNumericGap8StartProvider(): TestDataProvider
     {
         return NumericGap8StartProvider::invalid();
     }
 
-    /** @dataProvider validNumericGap8EndProvider */
+    #[DataProvider('validNumericGap8EndProvider')]
     public function testValidNumericGap8End(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
@@ -61,12 +62,12 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public static function validNumericGap8EndProvider(): DataProvider
+    public static function validNumericGap8EndProvider(): TestDataProvider
     {
         return NumericGap8EndProvider::valid();
     }
 
-    /** @dataProvider invalidNumericGap8EndProvider */
+    #[DataProvider('invalidNumericGap8EndProvider')]
     public function testInvalidNumericGap8End(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
@@ -79,12 +80,12 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public static function invalidNumericGap8EndProvider(): DataProvider
+    public static function invalidNumericGap8EndProvider(): TestDataProvider
     {
         return NumericGap8EndProvider::invalid();
     }
 
-    /** @dataProvider validNumericGapMidProvider */
+    #[DataProvider('validNumericGapMidProvider')]
     public function testValidNumericGapMid(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
@@ -95,12 +96,12 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public static function validNumericGapMidProvider(): DataProvider
+    public static function validNumericGapMidProvider(): TestDataProvider
     {
         return NumericGapMidProvider::valid();
     }
 
-    /** @dataProvider invalidNumericGapMidProvider */
+    #[DataProvider('invalidNumericGapMidProvider')]
     public function testInvalidNumericGapMid(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
@@ -113,7 +114,7 @@ final class NumericSetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public static function invalidNumericGapMidProvider(): DataProvider
+    public static function invalidNumericGapMidProvider(): TestDataProvider
     {
         return NumericGapMidProvider::invalid();
     }

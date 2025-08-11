@@ -12,14 +12,14 @@ final class DuplicationAlpha62Test extends TestCase
 {
     public function testNoDuplicationAlpha62Start(): void
     {
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 10; ++$i) {
             $this->alpha62Start($i);
         }
     }
 
     public function testNoDuplicationAlpha62End(): void
     {
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 10; ++$i) {
             $this->alpha62End($i);
         }
     }
@@ -35,7 +35,7 @@ final class DuplicationAlpha62Test extends TestCase
 
         $initial = $tokenSet->midToken();
 
-        for ($i = 1; $i <= 500; $i++) {
+        for ($i = 1; $i <= 500; ++$i) {
             $next = $calculator->between($initial, null);
 
             $this->assertFalse(\strcmp($initial, $next) >= 0);
@@ -55,7 +55,7 @@ final class DuplicationAlpha62Test extends TestCase
 
         $initial = $tokenSet->midToken();
 
-        for ($i = 1; $i <= 500; $i++) {
+        for ($i = 1; $i <= 500; ++$i) {
             $next = $calculator->between($initial, null);
 
             $this->assertFalse(\strcmp($initial, $next) >= 0);

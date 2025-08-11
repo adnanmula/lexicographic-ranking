@@ -2,13 +2,13 @@
 
 namespace AdnanMula\LexRanking\Tests\DataProvider\Alpha36;
 
-use AdnanMula\LexRanking\Tests\DataProvider\DataProvider;
+use AdnanMula\LexRanking\Tests\DataProvider\TestDataProvider;
 
-final class Alpha36Gap8EndProvider
+final readonly class Alpha36Gap8EndProvider
 {
-    public static function valid(): DataProvider
+    public static function valid(): TestDataProvider
     {
-        return new class extends DataProvider {
+        return new class extends TestDataProvider {
             public function __construct()
             {
                 parent::__construct(
@@ -48,9 +48,9 @@ final class Alpha36Gap8EndProvider
         };
     }
 
-    public static function invalid(): DataProvider
+    public static function invalid(): TestDataProvider
     {
-        return new class extends DataProvider {
+        return new class extends TestDataProvider {
             public function __construct()
             {
                 parent::__construct(

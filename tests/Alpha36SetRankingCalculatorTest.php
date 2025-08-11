@@ -10,13 +10,14 @@ use AdnanMula\LexRanking\RankingCalculator;
 use AdnanMula\LexRanking\Tests\DataProvider\Alpha36\Alpha36Gap8EndProvider;
 use AdnanMula\LexRanking\Tests\DataProvider\Alpha36\Alpha36Gap8StartProvider;
 use AdnanMula\LexRanking\Tests\DataProvider\Alpha36\Alpha36GapMidProvider;
-use AdnanMula\LexRanking\Tests\DataProvider\DataProvider;
+use AdnanMula\LexRanking\Tests\DataProvider\TestDataProvider;
 use AdnanMula\LexRanking\Token\Alpha36TokenSet;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class Alpha36SetRankingCalculatorTest extends TestCase
 {
-    /** @dataProvider validAlpha36Gap8StartProvider */
+    #[DataProvider('validAlpha36Gap8StartProvider')]
     public function testValidAlpha36Gap8Start(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
@@ -27,12 +28,12 @@ final class Alpha36SetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public static function validAlpha36Gap8StartProvider(): DataProvider
+    public static function validAlpha36Gap8StartProvider(): TestDataProvider
     {
         return Alpha36Gap8StartProvider::valid();
     }
 
-    /** @dataProvider invalidAlpha36Gap8StartProvider */
+    #[DataProvider('invalidAlpha36Gap8StartProvider')]
     public function testInvalidAlpha36Gap8Start(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
@@ -45,12 +46,12 @@ final class Alpha36SetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public static function invalidAlpha36Gap8StartProvider(): DataProvider
+    public static function invalidAlpha36Gap8StartProvider(): TestDataProvider
     {
         return Alpha36Gap8StartProvider::invalid();
     }
 
-    /** @dataProvider validAlpha36Gap8EndProvider */
+    #[DataProvider('validAlpha36Gap8EndProvider')]
     public function testValidAlpha36Gap8End(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
@@ -61,12 +62,12 @@ final class Alpha36SetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public static function validAlpha36Gap8EndProvider(): DataProvider
+    public static function validAlpha36Gap8EndProvider(): TestDataProvider
     {
         return Alpha36Gap8EndProvider::valid();
     }
 
-    /** @dataProvider invalidAlpha36Gap8EndProvider */
+    #[DataProvider('invalidAlpha36Gap8EndProvider')]
     public function testInvalidAlpha36Gap8End(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
@@ -79,12 +80,12 @@ final class Alpha36SetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public static function invalidAlpha36Gap8EndProvider(): DataProvider
+    public static function invalidAlpha36Gap8EndProvider(): TestDataProvider
     {
         return Alpha36Gap8EndProvider::invalid();
     }
 
-    /** @dataProvider validAlpha36GapMidProvider */
+    #[DataProvider('validAlpha36GapMidProvider')]
     public function testValidAlpha36GapMid(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
@@ -95,12 +96,12 @@ final class Alpha36SetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public static function validAlpha36GapMidProvider(): DataProvider
+    public static function validAlpha36GapMidProvider(): TestDataProvider
     {
         return Alpha36GapMidProvider::valid();
     }
 
-    /** @dataProvider invalidAlpha36GapMidProvider */
+    #[DataProvider('invalidAlpha36GapMidProvider')]
     public function testInvalidAlpha36GapMid(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
@@ -113,7 +114,7 @@ final class Alpha36SetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public static function invalidAlpha36GapMidProvider(): DataProvider
+    public static function invalidAlpha36GapMidProvider(): TestDataProvider
     {
         return Alpha36GapMidProvider::invalid();
     }

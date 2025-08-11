@@ -2,17 +2,18 @@
 
 namespace AdnanMula\LexRanking\Tests\DataProvider;
 
-/** @implements \Iterator<int, array> */
-abstract class DataProvider implements \Iterator
+use Iterator;
+
+/** @implements Iterator<int, array> */
+abstract class TestDataProvider implements Iterator
 {
-    private array $items;
     private int $index;
 
-    protected function __construct(array $items)
-    {
+    protected function __construct(
+        private readonly array $items,
+    ) {
         $this->assert($items);
 
-        $this->items = $items;
         $this->index = 0;
     }
 
@@ -23,7 +24,7 @@ abstract class DataProvider implements \Iterator
 
     public function next(): void
     {
-        $this->index++;
+        ++$this->index;
     }
 
     public function key(): int

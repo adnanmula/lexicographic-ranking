@@ -10,13 +10,14 @@ use AdnanMula\LexRanking\RankingCalculator;
 use AdnanMula\LexRanking\Tests\DataProvider\Alpha62\Alpha62Gap8EndProvider;
 use AdnanMula\LexRanking\Tests\DataProvider\Alpha62\Alpha62Gap8StartProvider;
 use AdnanMula\LexRanking\Tests\DataProvider\Alpha62\Alpha62GapMidProvider;
-use AdnanMula\LexRanking\Tests\DataProvider\DataProvider;
+use AdnanMula\LexRanking\Tests\DataProvider\TestDataProvider;
 use AdnanMula\LexRanking\Token\Alpha62TokenSet;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class Alpha62SetRankingCalculatorTest extends TestCase
 {
-    /** @dataProvider validAlpha62Gap8StartProvider */
+    #[DataProvider('validAlpha62Gap8StartProvider')]
     public function testValidAlpha62Gap8Start(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
@@ -27,12 +28,12 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public static function validAlpha62Gap8StartProvider(): DataProvider
+    public static function validAlpha62Gap8StartProvider(): TestDataProvider
     {
         return Alpha62Gap8StartProvider::valid();
     }
 
-    /** @dataProvider invalidAlpha62Gap8StartProvider */
+    #[DataProvider('invalidAlpha62Gap8StartProvider')]
     public function testInvalidAlpha62Gap8Start(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
@@ -45,12 +46,12 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public static function invalidAlpha62Gap8StartProvider(): DataProvider
+    public static function invalidAlpha62Gap8StartProvider(): TestDataProvider
     {
         return Alpha62Gap8StartProvider::invalid();
     }
 
-    /** @dataProvider validAlpha62Gap8EndProvider */
+    #[DataProvider('validAlpha62Gap8EndProvider')]
     public function testValidAlpha62Gap8End(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
@@ -61,12 +62,12 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public static function validAlpha62Gap8EndProvider(): DataProvider
+    public static function validAlpha62Gap8EndProvider(): TestDataProvider
     {
         return Alpha62Gap8EndProvider::valid();
     }
 
-    /** @dataProvider invalidAlpha62Gap8EndProvider */
+    #[DataProvider('invalidAlpha62Gap8EndProvider')]
     public function testInvalidAlpha62Gap8End(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
@@ -79,12 +80,12 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public static function invalidAlpha62Gap8EndProvider(): DataProvider
+    public static function invalidAlpha62Gap8EndProvider(): TestDataProvider
     {
         return Alpha62Gap8EndProvider::invalid();
     }
 
-    /** @dataProvider validAlpha62GapMidProvider */
+    #[DataProvider('validAlpha62GapMidProvider')]
     public function testValidAlpha62GapMid(?string $prev, ?string $next, string $result): void
     {
         $calculator = new RankingCalculator(
@@ -95,12 +96,12 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $this->assertEquals($result, $calculator->between($prev, $next));
     }
 
-    public static function validAlpha62GapMidProvider(): DataProvider
+    public static function validAlpha62GapMidProvider(): TestDataProvider
     {
         return Alpha62GapMidProvider::valid();
     }
 
-    /** @dataProvider invalidAlpha62GapMidProvider */
+    #[DataProvider('invalidAlpha62GapMidProvider')]
     public function testInvalidAlpha62GapMid(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
@@ -113,7 +114,7 @@ final class Alpha62SetRankingCalculatorTest extends TestCase
         $calculator->between($prev, $next);
     }
 
-    public static function invalidAlpha62GapMidProvider(): DataProvider
+    public static function invalidAlpha62GapMidProvider(): TestDataProvider
     {
         return Alpha62GapMidProvider::invalid();
     }

@@ -8,14 +8,14 @@ use AdnanMula\LexRanking\Position\FixedStartPosition;
 use AdnanMula\LexRanking\RankingCalculator;
 use AdnanMula\LexRanking\Token\Alpha36TokenSet;
 use AdnanMula\LexRanking\Token\Alpha62TokenSet;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\TestCase;
 
 final class RankingCalculatorTest extends TestCase
 {
-    /**
-     * @dataProvider validFixedGapProvider
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
+    #[DataProvider('validFixedGapProvider')]
     public function testStartValidFixedGap(int $gap): void
     {
         new RankingCalculator(
@@ -24,10 +24,8 @@ final class RankingCalculatorTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider validFixedGapProvider
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
+    #[DataProvider('validFixedGapProvider')]
     public function testEndValidFixedGap(int $gap): void
     {
         new RankingCalculator(
@@ -41,7 +39,7 @@ final class RankingCalculatorTest extends TestCase
         return [[1], [20], [36], [62]];
     }
 
-    /** @dataProvider invalidFixedGapProvider */
+    #[DataProvider('invalidFixedGapProvider')]
     public function testStartInvalidFixedGap(int $gap): void
     {
         $this->expectException(InvalidPositionException::class);
