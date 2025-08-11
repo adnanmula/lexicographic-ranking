@@ -6,6 +6,6 @@ final class InvalidTokenSetException extends \InvalidArgumentException
 {
     public function __construct()
     {
-        parent::__construct('Invalid token set.', 0, null);
+        parent::__construct('Invalid token set');
     }
 }

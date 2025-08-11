@@ -6,6 +6,6 @@ final class InvalidInputException extends \InvalidArgumentException
 {
     public function __construct()
     {
-        parent::__construct('Invalid input.', 0, null);
+        parent::__construct('Invalid input');
     }
 }

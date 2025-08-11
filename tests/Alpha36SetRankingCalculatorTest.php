@@ -37,6 +37,7 @@ final class Alpha36SetRankingCalculatorTest extends TestCase
     public function testInvalidAlpha36Gap8Start(?string $prev, ?string $next): void
     {
         $this->expectException(InvalidInputException::class);
+        $this->expectExceptionMessage('Invalid input');
 
         $calculator = new RankingCalculator(
             new Alpha36TokenSet(),
